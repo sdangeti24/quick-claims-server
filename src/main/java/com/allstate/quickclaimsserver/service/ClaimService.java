@@ -1,11 +1,13 @@
 package com.allstate.quickclaimsserver.service;
 
 import com.allstate.quickclaimsserver.domain.Claim;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.allstate.quickclaimsserver.exceptions.ClaimNotFoundException;
 
 import java.util.List;
 
 public interface ClaimService {
 
     public List<Claim> getAllClaims();
+
+    public Claim getByClaimNum(Integer Id) throws ClaimNotFoundException;
 }

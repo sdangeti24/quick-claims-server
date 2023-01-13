@@ -26,7 +26,13 @@ public class ClaimServiceImpl implements ClaimService{
             return optionalClaim.get();
         }
         else {
-            throw new ClaimNotFoundException("There is no claim with claim numeber" +id);
+            throw new ClaimNotFoundException("There is no claim with claim number" +id);
         }
     }
+
+    @Override
+    public List<Claim> getByStatus(String status) {
+        return claimRepository.findAllByStatus(status);
+    }
+
 }

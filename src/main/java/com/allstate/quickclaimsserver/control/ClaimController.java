@@ -17,13 +17,19 @@ public class ClaimController {
     private ClaimService claimService;
 
     @GetMapping()
-    public List<Claim> getAllClaims() {
-        return claimService.getAllClaims();
+    public List<Claim> getAllClaims(@RequestParam(value="status", required = false) String status) {
+        if (status == null) {
+            return claimService.getAllClaims();
+        }
+        else {
+            return claimService.getByStatus(status);
+        }
     }
 
     @GetMapping("/{claimNum}")
-    public Claim findById(@PathVariable("claimNum") Integer claimnum) throws ClaimNotFoundException {
-        return claimService.getByClaimNum(claimnum);
+    public Claim findById(@PathVariable("claimNum") Integer claimNum) throws ClaimNotFoundException {
+        return claimService.getByClaimNum(claimNum);
+
     }
 
 }
